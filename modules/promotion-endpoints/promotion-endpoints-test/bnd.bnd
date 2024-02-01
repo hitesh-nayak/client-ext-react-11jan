@@ -1,0 +1,5 @@
+Bundle-Name: promotion-endpoints-test
+Bundle-SymbolicName: promotion.endpoints.test
+Bundle-Version: 1.0.0
+-includeresource: promotion.endpoints.client.jar=../promotion-endpoints-client/build/libs/promotion.endpoints.client-1.0.0.jar;lib:=true
+-provider-policy: ${replacestring;${range;[==,==]};.*,(.*)];$1}
