@@ -82,6 +82,8 @@ public class OpenAPIResourceImpl {
 		{
 			add(PromotionCategoryResourceImpl.class);
 
+			add(ValidateCategorySelectionResourceImpl.class);
+
 			add(OpenAPIResourceImpl.class);
 		}
 	};

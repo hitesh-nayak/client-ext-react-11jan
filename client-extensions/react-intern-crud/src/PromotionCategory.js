@@ -1,6 +1,7 @@
 import {promotionRootCategoryGet} from "./promotionRootCategoryGet";
 import React, {useEffect, useState} from "react";
 import {promotionSubCategoriesGet} from "./promotionSubCategoriesGet";
+import {validatePromotionCategory} from "./validatePromotionCategory";
 
 
 const PromotionCategory = () => {
@@ -111,8 +112,15 @@ const PromotionCategory = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        let form
-        console.log(JSON.stringify(new FormData(document.getElementById("categoryForm")[0])))
+        let formData = new FormData();
+        formData.append('rootCategory', selectedValueRoot);
+        formData.append('firstCategory',selectedValueFirst);
+        formData.append('secondCategory', selectedValueSecond);
+        formData.append('thirdCategory',selectedValueThird);
+        formData.append('fourthCategory', selectedValueFourth);
+        validatePromotionCategory(formData).then(function (json) {
+            console.log("isValid? " + JSON.stringify(json));
+        })
 
     }
 

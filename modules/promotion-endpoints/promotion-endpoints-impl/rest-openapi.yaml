@@ -29,6 +29,31 @@ components:
                 hasSubCategories:
                     type: boolean
 
+        ValidateCategorySelectionRequest:
+            type: object
+            properties:
+                rootCategory:
+                    format: int64
+                    type: integer
+                firstCategory:
+                    format: int64
+                    type: integer
+                secondCategory:
+                    format: int64
+                    type: integer
+                thirdCategory:
+                    format: int64
+                    type: integer
+                fourthCategory:
+                    format: int64
+                    type: integer
+
+        ValidateCategorySelectionResponse:
+            type: object
+            properties:
+                isValid:
+                    type: boolean
+
 
 
 
@@ -117,4 +142,27 @@ paths:
 
             tags: [PromotionCategory]
 
+    "/validatePromotionCategory":
+        post:
+            requestBody:
+                content:
+                    multipart/form-data:
+                        schema:
+                            $ref: '#/components/schemas/ValidateCategorySelectionRequest'
 
+
+            responses:
+                200:
+                    description: Success!
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ValidateCategorySelectionResponse'
+
+                        application/xml:
+                            schema:
+                                $ref: '#/components/schemas/ValidateCategorySelectionResponse'
+
+
+
+            tags: [ValidateCategorySelection]

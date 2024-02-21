@@ -1,4 +1,0 @@
-Bundle-Name: promotion-endpoints-client
-Bundle-SymbolicName: promotion.endpoints.client
-Bundle-Version: 1.0.0
-Import-Package: *;resolution:="optional"
