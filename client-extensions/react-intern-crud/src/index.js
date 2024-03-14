@@ -22,7 +22,7 @@ const App = ({route}) => {
 	if (Liferay.ThemeDisplay.isSignedIn()) {
 		return (
 			<div>
-				<AppComponent/>;
+				<AppComponent/>
 			</div>
 		);
 	}

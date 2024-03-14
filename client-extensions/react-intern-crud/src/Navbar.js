@@ -9,7 +9,7 @@ import Knowledge from './Knowledge';
 import PromotionCategory from "./PromotionCategory";
 
 const Navbar = () => {
-	const [active, setActive] = useState('Item 1');
+	const [active, setActive] = useState('Item 4');
 
 	return (
         <>
@@ -60,7 +60,7 @@ const Navbar = () => {
         {active ===`Item 1` && <Blog/>}
         {active ===`Item 2` && <Knowledge/>}
         {active ===`Item 3` && <Documents/>}
-			{active === `Item 4` && <PromotionCategory></PromotionCategory>}
+		{active ===`Item 4` && <PromotionCategory></PromotionCategory>}
         </>
 	)
 }

@@ -11,17 +11,14 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.vulcan.pagination.Page;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ServiceScope;
-
 import promotion.endpoints.dto.v1_0.PromotionCategory;
 import promotion.endpoints.resource.v1_0.PromotionCategoryResource;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
- * @author me
+ * @author Hitesh Nayak
  */
 @Component(
 	properties = "OSGI-INF/liferay/rest/v1_0/promotion-category.properties",

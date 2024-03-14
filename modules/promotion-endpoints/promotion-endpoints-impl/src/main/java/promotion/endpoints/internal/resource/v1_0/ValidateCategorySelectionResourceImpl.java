@@ -9,7 +9,6 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.vulcan.multipart.MultipartBody;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.ServiceScope;
-
 import promotion.endpoints.dto.v1_0.ValidateCategorySelectionResponse;
 import promotion.endpoints.resource.v1_0.ValidateCategorySelectionResource;
 
@@ -19,13 +18,13 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * @author me
+ * @author Hitesh Nayak
  */
 @Component(properties = "OSGI-INF/liferay/rest/v1_0/validate-category-selection.properties", scope = ServiceScope.PROTOTYPE, service = ValidateCategorySelectionResource.class)
 public class ValidateCategorySelectionResourceImpl extends BaseValidateCategorySelectionResourceImpl {
 
     @Override
-    public ValidateCategorySelectionResponse postValidatePromotionCategory(MultipartBody multipartBody) throws Exception {
+    public ValidateCategorySelectionResponse postValidatePromotionCategory(MultipartBody multipartBody) {
         ValidateCategorySelectionResponse validateCategorySelectionResponse = new ValidateCategorySelectionResponse();
         boolean isValid = false;
         try {
@@ -47,10 +46,13 @@ public class ValidateCategorySelectionResourceImpl extends BaseValidateCategoryS
             if (Validator.isNotNull(thirdCategory)) categoryList.add(thirdCategory);
             if (Validator.isNotNull(fourthCategory)) categoryList.add(fourthCategory);
 
-            log.info(categoryList);
+            log.info("Validating category list -> " + categoryList);
 
-            for (int i = 0; i < categoryList.size() - 2; i++) {
-                isValid = isValidCategory(categoryList.get(i), categoryList.get(i + 1));
+            for (int i = 0; i <= categoryList.size() - 2; i++) {
+                if (!AssetCategoryLocalServiceUtil.getChildCategories(categoryList.get(i)).isEmpty())
+                    isValid = isValidCategory(categoryList.get(i), categoryList.get(i + 1));
+                if (i == 0 && Validator.isNotNull(AssetCategoryLocalServiceUtil.fetchAssetCategory(categoryList.get(i))) && AssetCategoryLocalServiceUtil.getChildCategories(categoryList.get(i)).isEmpty())
+                    isValid = true;
                 if (!isValid) break;
             }
             validateCategorySelectionResponse.setIsValid(isValid);
@@ -68,7 +70,7 @@ public class ValidateCategorySelectionResourceImpl extends BaseValidateCategoryS
             AssetCategory assetCategory = AssetCategoryLocalServiceUtil.getAssetCategory(superId);
             if (Validator.isNotNull(assetCategory)) {
                 Long[] subIdArr = AssetCategoryLocalServiceUtil.getChildCategories(superId).stream().map(AssetCategory::getCategoryId).toArray(Long[]::new);
-                if (subIdArr.length > 0) return Arrays.asList(subIdArr).contains(subId);
+                if (subIdArr.length > 0) return Arrays.asList(subIdArr).contains(subId) ;
                 else return true;
             }
 
