@@ -2,7 +2,7 @@ import {promotionRootCategoryGet} from "./promotionRootCategoryGet";
 import React, {useEffect, useRef, useState} from "react";
 import {promotionSubCategoriesGet} from "./promotionSubCategoriesGet";
 import {validatePromotionCategory} from "./validatePromotionCategory";
-import AppComponent from "./AppComponent";
+
 
 
 const PromotionCategory = () => {
