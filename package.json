@@ -3,7 +3,8 @@
     "workspaces": {
         "packages": [
             "client-extensions/react-intern-crud",
-            "client-extensions/react-jan11"
+            "client-extensions/react-jan11",
+            "client-extensions/liferay-clarity-theme-css"
         ]
     }
 }
